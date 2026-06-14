@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crochet by Rasi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --cream: #FDF6EC;
+    --blush: #F2D9C8;
+    --dusty-rose: #C98B72;
+    --terracotta: #A85C40;
+    --warm-brown: #5C3320;
+    --sage: #8A9E7B;
+    --soft-sage: #C8D9BE;
+    --off-white: #FEF9F4;
+    --text-dark: #3A2216;
+    --text-mid: #7A5040;
+    --text-light: #B08070;
+  }
+
+  body {
+    font-family: 'Lora', Georgia, serif;
+    background: var(--cream);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: var(--cream);
+    border-bottom: 1.5px solid var(--blush);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.3rem;
+    color: var(--warm-brown);
+    letter-spacing: 0.02em;
+    text-decoration: none;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-family: 'Lora', serif;
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--terracotta); }
+  .nav-cta {
+    background: var(--terracotta);
+    color: var(--off-white) !important;
+    padding: 8px 20px;
+    border-radius: 40px;
+    font-size: 0.85rem !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--warm-brown) !important; color: var(--off-white) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 92vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 4rem 4rem 4rem 5rem;
+    gap: 3rem;
+    background: var(--off-white);
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 420px; height: 420px;
+    background: var(--soft-sage);
+    border-radius: 50%;
+    opacity: 0.35;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: 30%;
+    width: 260px; height: 260px;
+    background: var(--blush);
+    border-radius: 50%;
+    opacity: 0.45;
+  }
+  .hero-text { position: relative; z-index: 2; }
+  .hero-tag {
+    display: inline-block;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--dusty-rose);
+    background: var(--blush);
+    padding: 5px 14px;
+    border-radius: 30px;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.4rem, 5vw, 3.6rem);
+    line-height: 1.18;
+    color: var(--warm-brown);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+  .hero p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-mid);
+    max-width: 420px;
+    margin-bottom: 2rem;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--terracotta);
+    color: var(--off-white);
+    padding: 13px 28px;
+    border-radius: 40px;
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: none; cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--warm-brown); transform: translateY(-2px); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--terracotta);
+    padding: 13px 28px;
+    border-radius: 40px;
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    text-decoration: none;
+    border: 1.5px solid var(--dusty-rose);
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-block;
+  }
+  .btn-secondary:hover { background: var(--blush); transform: translateY(-2px); }
+
+  .hero-visual {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+  }
+  .hero-card-stack {
+    position: relative;
+    width: 320px; height: 380px;
+  }
+  .h-card {
+    position: absolute;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .h-card-1 {
+    width: 240px; height: 300px;
+    background: var(--blush);
+    top: 40px; left: 60px;
+    transform: rotate(-6deg);
+  }
+  .h-card-2 {
+    width: 240px; height: 300px;
+    background: var(--soft-sage);
+    top: 20px; left: 30px;
+    transform: rotate(2deg);
+  }
+  .h-card-main {
+    width: 260px; height: 320px;
+    background: var(--cream);
+    border: 2px solid var(--blush);
+    top: 10px; left: 28px;
+    z-index: 3;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem;
+  }
+  .yarn-ball-svg { width: 100px; height: 100px; }
+  .card-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--warm-brown);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .card-label span {
+    display: block;
+    font-family: 'Lora', serif;
+    font-size: 0.8rem;
+    color: var(--text-light);
+    margin-top: 0.3rem;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 4rem; }
+
+  /* ABOUT */
+  .about {
+    background: var(--cream);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  .about-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--warm-brown);
+    margin-bottom: 1.2rem;
+    line-height: 1.3;
+  }
+  .about-text p {
+    font-size: 1rem;
+    line-height: 1.9;
+    color: var(--text-mid);
+    margin-bottom: 1rem;
+  }
+  .about-badges {
+    display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.5rem;
+  }
+  .badge {
+    background: var(--blush);
+    color: var(--terracotta);
+    font-size: 0.82rem;
+    padding: 5px 14px;
+    border-radius: 30px;
+    font-family: 'Lora', serif;
+    letter-spacing: 0.02em;
+  }
+  .about-illustration {
+    background: var(--blush);
+    border-radius: 32px;
+    height: auto;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .about-icon-wrap {
+    position: relative; z-index: 2;
+    text-align: center;
+  }
+  .about-icon-wrap p {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--warm-brown);
+    margin-top: 1rem;
+  }
+
+  /* GALLERY */
+  .gallery {
+    background: var(--off-white);
+    text-align: center;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--warm-brown);
+    margin-bottom: 0.5rem;
+  }
+  .section-subtitle {
+    color: var(--text-light);
+    font-size: 1rem;
+    margin-bottom: 3rem;
+  }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .gallery-card {
+    background: var(--cream);
+    border-radius: 20px;
+    border: 1.5px solid var(--blush);
+    overflow: hidden;
+    transition: transform 0.25s, box-shadow 0.25s;
+    cursor: pointer;
+  }
+  .gallery-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(90,40,20,0.1);
+  }
+  .gallery-thumb {
+    height: 180px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3.5rem;
+  }
+  .gallery-thumb-1 { background: #F5DDD0; }
+  .gallery-thumb-2 { background: #D8E8D0; }
+  .gallery-thumb-3 { background: #EFD8E8; }
+  .gallery-thumb-4 { background: #D0DDF5; }
+  .gallery-thumb-5 { background: #F5EDD0; }
+  .gallery-thumb-6 { background: #D0F0EC; }
+  .gallery-info { padding: 1rem 1.2rem; text-align: left; }
+  .gallery-info h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    color: var(--warm-brown);
+    margin-bottom: 0.3rem;
+  }
+  .gallery-info p {
+    font-size: 0.82rem;
+    color: var(--text-light);
+  }
+
+  /* PRICING */
+  .pricing {
+    background: var(--cream);
+    text-align: center;
+  }
+  .pricing-note {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    max-width: 860px;
+    margin: 0 auto 2rem;
+  }
+  .price-card {
+    background: var(--off-white);
+    border: 1.5px solid var(--blush);
+    border-radius: 24px;
+    padding: 2rem 1.5rem;
+    text-align: left;
+    transition: transform 0.2s;
+  }
+  .price-card:hover { transform: translateY(-4px); }
+  .price-card.featured {
+    background: var(--warm-brown);
+    border-color: var(--warm-brown);
+  }
+  .price-card.featured h3,
+  .price-card.featured p,
+  .price-card.featured .price-amount,
+  .price-card.featured .price-from { color: var(--off-white) !important; }
+  .price-card.featured .price-list li { color: #E8C8B8; }
+  .price-icon { font-size: 2rem; margin-bottom: 1rem; }
+  .price-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    color: var(--warm-brown);
+    margin-bottom: 0.5rem;
+  }
+  .price-amount {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--terracotta);
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 0.2rem;
+  }
+  .price-from {
+    font-size: 0.78rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+    display: block;
+  }
+  .price-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.2rem;
+  }
+  .price-list li {
+    font-size: 0.88rem;
+    color: var(--text-mid);
+    padding: 4px 0;
+  }
+  .price-list li::before { content: '✦ '; color: var(--dusty-rose); font-size: 0.7rem; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--blush);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-text h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
+    color: var(--warm-brown);
+    margin-bottom: 1rem;
+    line-height: 1.3;
+  }
+  .contact-text p {
+    color: var(--text-mid);
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+  }
+  .contact-detail {
+    display: flex; align-items: center; gap: 0.7rem;
+    margin-bottom: 0.8rem;
+    font-size: 0.92rem;
+    color: var(--text-mid);
+  }
+  .contact-detail .icon {
+    width: 36px; height: 36px;
+    background: var(--off-white);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .contact-form {
+    background: var(--off-white);
+    border-radius: 24px;
+    padding: 2.5rem;
+  }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label {
+    display: block;
+    font-size: 0.83rem;
+    color: var(--text-mid);
+    margin-bottom: 0.4rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .form-group input,
+  .form-group textarea,
+  .form-group select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1.5px solid var(--blush);
+    border-radius: 12px;
+    background: var(--cream);
+    font-family: 'Lora', serif;
+    font-size: 0.95rem;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus,
+  .form-group textarea:focus,
+  .form-group select:focus { border-color: var(--dusty-rose); }
+  .form-group textarea { height: 110px; resize: none; }
+  .submit-btn {
+    width: 100%;
+    background: var(--terracotta);
+    color: var(--off-white);
+    border: none;
+    border-radius: 40px;
+    padding: 14px;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    letter-spacing: 0.04em;
+  }
+  .submit-btn:hover { background: var(--warm-brown); }
+
+  /* FOOTER */
+  footer {
+    background: var(--warm-brown);
+    color: var(--blush);
+    text-align: center;
+    padding: 2.5rem;
+  }
+  footer .footer-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: var(--off-white);
+    margin-bottom: 0.5rem;
+  }
+  footer p {
+    font-size: 0.85rem;
+    color: #C8A090;
+    line-height: 1.7;
+  }
+  footer .footer-links {
+    display: flex; justify-content: center; gap: 1.5rem;
+    list-style: none; margin: 1rem 0;
+  }
+  footer .footer-links a {
+    color: var(--blush); text-decoration: none;
+    font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  footer .footer-links a:hover { color: var(--off-white); }
+
+  /* ANIMATIONS */
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  .float-anim { animation: float 4s ease-in-out infinite; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero-text > * {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .hero-tag { animation-delay: 0.1s; }
+  .hero h1 { animation-delay: 0.25s; }
+  .hero p { animation-delay: 0.4s; }
+  .hero-btns { animation-delay: 0.55s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; padding: 3rem 1.5rem; min-height: auto; }
+    .hero-visual { display: none; }
+    .about { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    .about-illustration { height: 200px; }
+    .gallery { padding: 3rem 1.5rem; }
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .pricing { padding: 3rem 1.5rem; }
+    .pricing-grid { grid-template-columns: 1fr; }
+    .contact { grid-template-columns: 1fr; padding: 3rem 1.5rem; }
+    .nav-links { gap: 1rem; }
+    section { padding: 3rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Crochet by Rasi</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact" class="nav-cta">Order Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-text">
+    <span class="hero-tag">✦ Handmade with love</span>
+    <h1>Cozy, <em>whimsical</em> crochet — made just for you</h1>
+    <p>Every piece from Crochet by Rasi is lovingly handcrafted to order. Whether it's a dreamy sweater, a plush toy, or a one-of-a-kind gift — your vision, my hook.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">Request a Custom Order</a>
+      <a href="#gallery" class="btn-secondary">Browse Gallery</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-card-stack float-anim">
+      <div class="h-card h-card-1"></div>
+      <div class="h-card h-card-2"></div>
+      <div class="h-card h-card-main">
+        <svg class="yarn-ball-svg" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="60" cy="60" r="48" fill="#C98B72"/>
+          <path d="M24 52 Q40 30 72 36 Q100 40 92 68 Q84 96 56 98 Q28 100 20 76 Q16 64 24 52Z" fill="#A85C40" opacity="0.5"/>
+          <path d="M30 44 Q50 22 80 32" stroke="#FDF6EC" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M18 62 Q36 48 60 52 Q84 56 96 44" stroke="#FDF6EC" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M22 76 Q48 68 64 76 Q80 84 98 68" stroke="#FDF6EC" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M32 90 Q56 86 72 92" stroke="#FDF6EC" stroke-width="2.5" stroke-linecap="round" fill="none"/>
+          <path d="M48 16 Q58 28 52 44" stroke="#5C3320" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <circle cx="48" cy="14" r="5" fill="#5C3320"/>
+          <path d="M44 10 Q50 4 54 10" stroke="#5C3320" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="card-label">
+          Handcrafted to order
+          <span>Ships in 1–2 weeks</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-illustration" style="padding:0; overflow:hidden; border-radius:32px; height:auto; background:#F5E6D8;">
+    <img src="Crochet_by_rasi.png" alt="Rasika crocheting"
+         style="width:50%; height:50%; display:block; border-radius:32px; object-fit:cover; object-position:center;">
+</div>
+  <div class="about-text">
+    <h2>Handmade with heart, stitch by stitch</h2>
+    <p>I'm Rasika. the hands and heart behind this little crochet corner <br>
+Crochet to me isn't iust threads and hooks - it's art, patience, and a sprinkle of love stitched into every loop. From tinv cute creations to dreamv handmade pieces, I'm here to share my journey, experiments, and lots of cozy crochet vibes with you.<br>
+Whether you're a fellow maker, an art lover, or someone who just enjoys pretty handmade things, Il'd love to have you here!</p>
+    <p>Every custom order is made with premium yarns, lots of care, and a touch of whimsy. I love bringing people's ideas to life, from cozy wearables to adorable amigurumi.</p>
+    <div class="about-badges">
+      <span class="badge">✦ 100% Handmade</span>
+      <span class="badge">✦ Custom sizing</span>
+      <span class="badge">✦ Premium yarns</span>
+      <span class="badge">✦ Made with love</span>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <h2 class="section-title">From the collection</h2>
+  <p class="section-subtitle">A peek at some custom creations — yours could be next!</p>
+  <div class="gallery-grid">
+    <div class="gallery-card">
+      <div class="gallery-thumb gallery-thumb-1">🧣</div>
+      <div class="gallery-info">
+        <h3>Chunky Scarves</h3>
+        <p>Soft & oversized, made to snuggle</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-thumb gallery-thumb-2">🐻</div>
+      <div class="gallery-info">
+        <h3>Amigurumi Toys</h3>
+        <p>Whimsical characters, made to order</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-thumb gallery-thumb-3">👒</div>
+      <div class="gallery-info">
+        <h3>Hats & Beanies</h3>
+        <p>Cozy head warmers in any color</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-thumb gallery-thumb-4">🧺</div>
+      <div class="gallery-info">
+        <h3>Market Bags</h3>
+        <p>Boho-chic & totally functional</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-thumb gallery-thumb-5">🌸</div>
+      <div class="gallery-info">
+        <h3>Floral Motifs</h3>
+        <p>Delicate blooms for home & gifts</p>
+      </div>
+    </div>
+    <div class="gallery-card">
+      <div class="gallery-thumb gallery-thumb-6">🧤</div>
+      <div class="gallery-info">
+        <h3>Fingerless Gloves</h3>
+        <p>Stylish warmth for every season</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <h2 class="section-title">Pricing</h2>
+  <p class="section-subtitle">All pieces are custom — final pricing depends on size, yarn, and complexity.</p>
+  <p class="pricing-note">Reach out for a personalized quote — I love chatting about ideas!</p>
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="price-icon">🧶</div>
+      <h3>Small Pieces</h3>
+      <div class="price-amount">₹200+</div>
+      <span class="price-from">starting from</span>
+      <ul class="price-list">
+        <li>Hair accessories</li>
+        <li>Keychains & charms</li>
+        <li>Small amigurumi</li>
+        <li>Bookmarks & coasters</li>
+      </ul>
+    </div>
+    <div class="price-card featured">
+      <div class="price-icon">⭐</div>
+      <h3>Medium Pieces</h3>
+      <div class="price-amount">₹500+</div>
+      <span class="price-from">most popular</span>
+      <ul class="price-list">
+        <li>Scarves & hats</li>
+        <li>Market & tote bags</li>
+        <li>Large amigurumi</li>
+        <li>Cushion covers</li>
+      </ul>
+    </div>
+    <div class="price-card">
+      <div class="price-icon">🌟</div>
+      <h3>Large Pieces</h3>
+      <div class="price-amount">₹1500+</div>
+      <span class="price-from">starting from</span>
+      <ul class="price-list">
+        <li>Cardigans & sweaters</li>
+        <li>Blankets & throws</li>
+        <li>Full outfit sets</li>
+        <li>Large home décor</li>
+      </ul>
+    </div>
+  </div>
+  <p style="font-size:0.85rem; color:var(--text-light); font-style:italic;">Prices are in INR. International orders available — contact for shipping rates.</p>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="contact-text">
+    <h2>Let's make something magical</h2>
+    <p>Have a dream piece in mind? Fill out the form and I'll get back to you within 24 hours to chat about your custom order.</p>
+    <div class="contact-detail">
+      <div class="icon">📱</div>
+      <span>DM me on Instagram @crochet_by_rasi</span>
+    </div>
+    <div class="contact-detail">
+      <div class="icon">📦</div>
+      <span>Delivery across India</span>
+    </div>
+    <div class="contact-detail">
+      <div class="icon">⏳</div>
+      <span>Turnaround: 1–3 weeks depending on size</span>
+    </div>
+    <div class="contact-detail">
+      <div class="icon">💳</div>
+      <span>UPI · Bank transfer(select orders)</span>
+    </div>
+  </div>
+  <div class="contact-form">
+    <form action="https://formspree.io/f/xgobroak" method="POST">
+    <div class="form-group">
+      <label>Your Name</label>
+      <input type="text" name="name" placeholder="e.g. Priya Sharma" required>
+    </div>
+    <div class="form-group">
+      <label>Contact (Phone / Email)</label>
+      <input type="text" name="contact" placeholder="For follow-up" required>
+    </div>
+    <div class="form-group">
+      <label>What would you like?</label>
+      <select name="category">
+        <option>Select a category</option>
+        <option>Amigurumi / Plush toys</option>
+        <option>Scarves, hats & accessories</option>
+        <option>Bags & home décor</option>
+        <option>Cardigans & wearables</option>
+        <option>Something else</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Tell me more</label>
+      <textarea name="message" placeholder="Colors, size, occasion, inspiration — the more detail the better!"></textarea>
+    </div>
+    <button type="submit" class="submit-btn">Send My Request ✦</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Crochet by Rasi</div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <p>Handmade with love · Every stitch, a little piece of me<br>© 2026 Crochet by Rasi · All rights reserved</p>
+</footer>
+</body>
+</html>
